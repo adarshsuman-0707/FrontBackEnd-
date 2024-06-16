@@ -1,10 +1,10 @@
 import { Route, Routes } from "react-router-dom";
 import Login from "./Login"
 import Signup from "./Signup"
-import { useEffect, useState } from "react";
+// import {  useState } from "react";
 
 function App() {
-  let [message,setMessage]=useState(null);
+  // let [message,setMessage]=useState(null);
   // useEffect(()=>{
   //   fetch("http://localhost:3000/message").then((res)=>res.json()).then((data)=>setMessage(data.message))
   // },[])

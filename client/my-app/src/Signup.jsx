@@ -3,11 +3,12 @@ import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import "bootstrap/dist/css/bootstrap.min.css"
 import './Login.css'
+import axios from 'axios';
 
 const Signup = () => {
     let [input,setInput]=useState({
-        firstname:""
-        ,lastname :""
+        username:""
+        ,number :""
        , email: ""
        , password :""
     })
@@ -15,8 +16,16 @@ const Signup = () => {
         const {name,value}=e.target;
         setInput({...input,[name]:value})
     }
-    const done=(e)=>{
+    const done=async(e)=>{
         e.preventDefault()
+        let res= await axios.post("http://localhost:3001/signup",input)
+        if(res.data=="ALready existing user "){
+          alert("user already exist");
+        }
+        else{
+          alert("Signup done")
+        }
+        console.log(res,"From server");
     }
         
     console.log(input);
@@ -30,36 +39,31 @@ const Signup = () => {
               <h1 className='subheading'>SIGNUP HERE</h1>
 <br/>
 <div className="wave-group">
-<input  type='text' name="firstname"  onInput = {fun1} value={input.firstname} required  className='input' />
+<input  type='text' name="username"  onInput = {fun1} value={input.username} required  className='input' />
 <span className="bar"></span>
   <label className="label">
-    <span className="label-char" style={{'--index':0}}>F</span>
-    <span className="label-char" style={{'--index':1}}>I</span>
-    <span className="label-char" style={{'--index':2}}>R</span>
-    <span className="label-char" style={{'--index':3}}>S</span>
-    <span className="label-char" style={{'--index':4}}>T</span>
-    <span className="label-char" style={{'--index':5}}>N</span>
-    <span className="label-char" style={{'--index':6}}>A</span>
-    <span className="label-char" style={{'--index':7}}>M</span>
-    <span className="label-char" style={{'--index':8}}>E</span>
-
-
-  </label>
-</div>
-<div className="wave-group">
-<input type='text' name="lastname" onInput = {fun1} value={input.lastname} required  className='input'/>
-<span className="bar"></span>
-  <label className="label">
-    <span className="label-char" style={{'--index':0}}>L</span>
-    <span className="label-char" style={{'--index':1}}>A</span>
-    <span className="label-char" style={{'--index':2}}>S</span>
-    <span className="label-char" style={{'--index':3}}>T</span>
+    <span className="label-char" style={{'--index':0}}>U</span>
+    <span className="label-char" style={{'--index':1}}>S</span>
+    <span className="label-char" style={{'--index':2}}>E</span>
+    <span className="label-char" style={{'--index':3}}>R</span>
     <span className="label-char" style={{'--index':4}}>N</span>
     <span className="label-char" style={{'--index':5}}>A</span>
     <span className="label-char" style={{'--index':6}}>M</span>
     <span className="label-char" style={{'--index':7}}>E</span>
 
 
+  </label>
+</div>
+<div className="wave-group">
+<input type='text' name="number" onInput = {fun1} value={input.number} required maxLength={10} minLength={10}  className='input'/>
+<span className="bar"></span>
+  <label className="label">
+    <span className="label-char" style={{'--index':0}}>N</span>
+    <span className="label-char" style={{'--index':1}}>U</span>
+    <span className="label-char" style={{'--index':2}}>M</span>
+    <span className="label-char" style={{'--index':3}}>B</span>
+    <span className="label-char" style={{'--index':4}}>E</span>
+    <span className="label-char" style={{'--index':5}}>R</span>
   </label>
 </div>
 <div className="wave-group">
@@ -95,8 +99,8 @@ const Signup = () => {
 </div>
 <div className='form-footer'>
     <p>
-    <button class="button">
-<p class="submit">Signup</p>
+    <button className="button">
+<p className="submit">Signup</p>
 
 </button> </p><p style={{color:"red"}}>Already have an account ? <NavLink to='/' style={{textDecoration:"none" ,color:"blueviolet"}}> Login</NavLink></p></div>
 

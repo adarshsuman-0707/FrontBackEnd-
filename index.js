@@ -26,7 +26,7 @@ const jwt = require('jsonwebtoken');
 
 
 // <-------------------->
-app.listen(3000, () => {
+app.listen(3001, () => {
     console.log("runninng");
 })
 app.get('/message',(req,res)=>{
@@ -98,14 +98,12 @@ app.post('/signup', async (req, res) => {
         let { username, number, email, password } = req.body;
         password = await bcrypt.hash(password, 10);
         const newdata = new usermodels({ username, number, email, password });
+        console.log(newdata);
         await newdata.save()
-        res.redirect('/')
+        res.send("Done")
+        // res.redirect('/')
     }
 })
 
 
 
-app.get('/loginll',(req,res)=>{
-    console.log(req.body);
-    res.send(req.body)
-})

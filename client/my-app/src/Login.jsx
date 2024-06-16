@@ -1,8 +1,9 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { NavLink } from 'react-router-dom'
 import { useState } from 'react'
 import "bootstrap/dist/css/bootstrap.min.css"
 import './Login.css'
+import axios from 'axios'
 const Login = () => {
     let [input,setInput]=useState({
         email: ""
@@ -14,9 +15,17 @@ const Login = () => {
         setInput({...input,[name]:value})
    
       }
-    const done=(e)=>{
+     const done=async(e)=>{
         e.preventDefault()
-     
+      console.log(input,"From frontend");
+     let res= await axios.post("http://localhost:3001/login",input)
+     if(res.data=="Finally login"){
+      alert("Finally login")
+     }
+     else{
+      alert("invalid password")
+     }
+     console.log(res,"From server");
     }
        
     console.log(input);
@@ -62,8 +71,8 @@ const Login = () => {
 </div>
 <div className='form-footer'>
     <p>
-    <button class="button">
-<p class="submit">Login</p>
+    <button className="button">
+<p className="submit">Login</p>
 
 </button> </p><p style={{color:"red"}}>Don't have an account ? <NavLink to='/Signup' style={{textDecoration:"none" ,color:"blueviolet"}}> Signup</NavLink></p></div>
 
