@@ -67,11 +67,13 @@ app.post('/login', async (req, res) => {
     }
     else {
 //  let logindata=req.body
+
         if (result) {
 
             //token generate 
             let data=JSON.stringify(logindata)
 let token=jwt.sign(data,'JKNSDAFOIFIWOWECMCCSPEIEIRJFN')
+
 console.log(token,"Token hai ");  
             res.send("Finally login")
         } else {

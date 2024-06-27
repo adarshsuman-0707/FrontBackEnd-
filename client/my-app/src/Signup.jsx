@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 import "bootstrap/dist/css/bootstrap.min.css"
 import './Login.css'
 import axios from 'axios';
-
+import { useNavigate } from 'react-router-dom';
 const Signup = () => {
     let [input,setInput]=useState({
         username:""
@@ -12,6 +12,7 @@ const Signup = () => {
        , email: ""
        , password :""
     })
+    let navigate=useNavigate()
     function fun1(e){
         const {name,value}=e.target;
         setInput({...input,[name]:value})
@@ -26,6 +27,7 @@ const Signup = () => {
           alert("Signup done")
         }
         console.log(res,"From server");
+        navigate("/")
     }
         
     console.log(input);

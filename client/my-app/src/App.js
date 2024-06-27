@@ -1,6 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import Login from "./Login"
 import Signup from "./Signup"
+import { NavBar } from "./NavBar";
 // import {  useState } from "react";
 
 function App() {
@@ -15,6 +16,8 @@ function App() {
 <Routes>
   <Route path='/' element={<Login/>}/>
   <Route path='/Signup' element={<Signup/>}/>
+  <Route path='/NavBar' element={<NavBar/>}/>
+
   </Routes>
 </>
   );
